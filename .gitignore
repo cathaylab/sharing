@@ -95,3 +95,6 @@ ENV/
 
 # App specific
 .DS_Store
+
+# GZ file
+*.gz
