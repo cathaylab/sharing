@@ -5,6 +5,8 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation, Dropout
 from keras.utils import np_utils
+
+from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 
 
@@ -14,13 +16,16 @@ def encode_one_hot(arr):
 
 
 class IrisDNN(object):
-    def __init__(self, dataset, model_path):
-        self.dataset = dataset
+    def __init__(self, model_path):
+        iris = load_iris()
+        self.X = iris.data
+        self.Y = iris.target
+
         self.model_path = model_path
 
     def split_data(self):
         train_X, test_X, train_y, test_y = train_test_split(
-            self.dataset.features, self.dataset.label, train_size=0.5, random_state=0)
+            self.X, self.Y, train_size=0.5, random_state=0)
         train_y_ohe, uniques = encode_one_hot(train_y)
         test_y_ohe, _ = encode_one_hot(test_y)
         self.classes = uniques

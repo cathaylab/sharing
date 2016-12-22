@@ -14,11 +14,10 @@ def run(channels):
 
     service_name = 'iris_classifier'
 
-    data_path = os.path.join(root_dir, "datasets", "iris.csv")
     model_path = os.path.join(root_dir, "models", "iris_dnn")
 
     # start service
-    iris_builder = IrisModelBuilder(data_path, model_path, channels=channels.split(","))
+    iris_builder = IrisModelBuilder(model_path, channels=channels.split(","))
     iris_builder.build()
     iris_builder.run()
 
