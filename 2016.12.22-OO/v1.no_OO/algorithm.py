@@ -24,6 +24,7 @@ class IrisDNN(object):
         train_y_ohe, uniques = encode_one_hot(train_y)
         test_y_ohe, _ = encode_one_hot(test_y)
         self.classes = uniques
+
         return train_X, train_y_ohe, test_X, test_y_ohe
 
     def build_network(self):
@@ -39,6 +40,7 @@ class IrisDNN(object):
         # output: 16 -> 3
         model.add(Dense(3))
         model.add(Activation('softmax'))
+
         return model
 
     def train_model(self):
