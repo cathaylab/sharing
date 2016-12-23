@@ -46,11 +46,8 @@ class MLBuilder(object):
 
         self.listener = MLListener(channels=channels)
 
-    def build_model(self):
-        raise NotImplementedError
-
     def build(self):
-        self.build_model()
+        raise NotImplementedError
 
     def run(self):
         print("Listen build {} model command...".format(self.listener.get_channels()))
