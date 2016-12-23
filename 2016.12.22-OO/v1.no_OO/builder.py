@@ -13,16 +13,13 @@ class IrisModelBuilder(object):
         self.pubsub = self.redis.pubsub()
         self.pubsub.subscribe(self.channels)
 
-    def build_model(self):
+    def build(self):
         print("build iris model... ")
 
         # train model
         iris_dnn = IrisDNN(self.model_path)
         iris_dnn.train_model()
         iris_dnn.save_model()
-
-    def build(self):
-        self.build_model()
 
     def run(self):
         print("Listen build {} model command...".format(self.channels))

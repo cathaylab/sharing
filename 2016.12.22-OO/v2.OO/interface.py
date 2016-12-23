@@ -52,9 +52,6 @@ class MLBuilder(object):
     def build(self):
         self.build_model()
 
-        # publish
-        self.listener.publish(self.channels, EVENT_TRAIN)
-
     def run(self):
         print("Listen build {} model command...".format(self.listener.get_channels()))
 
