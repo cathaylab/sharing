@@ -3,7 +3,7 @@ from interface import MLBuilder
 from algorithm import IrisDNN
 
 class IrisModelBuilder(MLBuilder):
-    def build_model(self):
+    def build(self):
         print("build iris model... ")
 
         # train model
