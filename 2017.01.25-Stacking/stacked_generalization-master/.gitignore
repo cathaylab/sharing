@@ -1,0 +1,7 @@
+*.csv
+*.pyc
+build/
+dist/
+stacked_generalization.egg-info/
+*.pkl
+pip_release.bat
