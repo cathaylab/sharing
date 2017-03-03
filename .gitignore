@@ -98,3 +98,6 @@ ENV/
 
 # GZ file
 *.gz
+
+# TXT file
+*.txt
