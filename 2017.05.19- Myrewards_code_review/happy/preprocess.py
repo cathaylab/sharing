@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 from __future__ import division
 
 import os
-import jaydebeapi as jdbc
 import pandas as pd
 import numpy as np
 import logging
@@ -13,40 +12,7 @@ from math import sqrt
 from collections import defaultdict, OrderedDict
 from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler
-from pyspark import SparkContext
-from pyspark.sql import HiveContext, DataFrameWriter
-from pyspark.sql.functions import lit
-from pyspark.sql.functions import col 
 
-sc = SparkContext()
-hc = HiveContext(sc)
-sqlContext = HiveContext(sc)
-
-#connect
-
-
-def td_spark(table):
-	HOST = "88.8.98.214"
-	DB = "fh_temp"
-	USER = "i0ac30az"
-	PWD = "WWWhelp0#"
-	CONNECT_URL = "jdbc:teradata://{}/TMODE=TERA,CLIENT_CHARSET=WINDOWS-950,DATABASE={},USER={},PASSWORD={}" \
-		.format(HOST, DB, USER, PWD)
-	JDBC = "jdbc"    
-	DRIVER = "driver"
-	DB_DRIVER = "com.teradata.jdbc.TeraDriver"
-	URL = "url"
-	TABLE = "dbtable"
-	
-	return sqlContext.read \
-        .format(JDBC) \
-        .option(DRIVER, DB_DRIVER) \
-        .option(URL, CONNECT_URL) \
-        .option(TABLE, table) \
-        .load()
-
-
-#database
 
 #custbase
 def custbase(data):
@@ -107,14 +73,13 @@ def zorder_sampling(data, zorder, cluster_num=2):
 def zorder_process(data_a, data_b, zorder):
     ## data sorted by z-order value
     zsampling = zorder_sampling(data_a, zorder, 10)
-    #ensemble = pd.concat([zsampling[0],zsampling[1],zsampling[2],zsampling[3],zsampling[4],zsampling[5],zsampling[6],\
-    #      zsampling[7],zsampling[8]])
+
     ensemble = pd.concat([zsampling[zsample] for zsample in range(9)])
     randomsample = zsampling[9]                 
     ensemble['algo'] = 'ens' 
     randomsample['algo'] = 'popular' 
-    ensemble = ensemble.drop(ensemble.columns[1:-1],axis=1)
-    randomsample = randomsample.drop(randomsample.columns[1:-1],axis=1)
+    ensemble = ensemble.drop(ensemble.columns[1:-1], axis=1)
+    randomsample = randomsample.drop(randomsample.columns[1:-1], axis=1)
     total_algo = pd.concat([data_b,ensemble, randomsample])
     total_algo.to_csv('myreward_algo.csv', encoding='utf-8', index=False)
     
@@ -139,7 +104,8 @@ def zorder(csv, data):
 	## calculate z-order value
 		if data['customer_id'][~data['customer_id'].isin(list(df['customer_id'].values))].any() !=0:
 				zorder_wanted = ['bonus_points','bonus_points_level','gender','consumption_level','education','age']
-				zorder = zorder_dataset(data.ix[:,zorder_wanted][~data['customer_id'].isin(list(df['customer_id'].values))].values)
+				zorder = zorder_dataset(data.ix[:,zorder_wanted]\
+                                            [~data['customer_id'].isin(list(df['customer_id'].values))].values)
 				df = zorder_process(data.ix, df, zorder)
 		else :
 			pass	
@@ -159,7 +125,7 @@ def origin_att(data):
 	origin_att.columns = ['customer_id','item_id','cnt']
 	origin_att.loc[:,"customer_id"] = origin_att.loc[:,"customer_id"].apply(lambda x: str(x).strip())
 	origin_att = origin_att.groupby(['customer_id','item_id']).sum().reset_index().groupby('customer_id').head(1)
-	origin_att = origin_att.drop(['cnt'],axis=1)
+	origin_att = origin_att.drop(['cnt'], axis=1)
 
 	return origin_att
 	

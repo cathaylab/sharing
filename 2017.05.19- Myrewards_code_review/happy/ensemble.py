@@ -1,8 +1,8 @@
 # coding: utf-8
 from __future__ import unicode_literals
+from __future__ import division
 
 import os
-import jaydebeapi as jdbc
 import pandas as pd
 import numpy as np
 import logging
@@ -10,15 +10,6 @@ import itertools
 
 
 from collections import defaultdict, OrderedDictndardScaler
-from pyspark import SparkContext
-from pyspark.sql import HiveContext, DataFrameWriter
-from pyspark.sql.functions import lit
-from pyspark.sql.functions import col
-
-
-sc = SparkContext()
-hc = HiveContext(sc)
-sqlContext = HiveContext(sc)
 
 # ensemble
 def ensemble(data_a, data_b):
@@ -88,11 +79,11 @@ def combine_algo(data, a):
     rec = pd.DataFrame([list(x) for x in final_people_prod['final_recommended_products']])
     final_people_prod = pd.concat([final_people_prod['customer_id'], rec], axis=1)
     final_people_prod = final_people_prod.sort_values(['customer_id'])
+    final_people_prod.to_csv('final_people_prod.csv', encoding='utf-8', index=False)
     return final_people_prod
 
 # final_people_prod.to_csv('final_people_prod.csv',encoding='utf-8',index=False)
 
-# final_people_prod.loc[final_people_prod['algo']!='ens','final_recommended_products'] = final_people_prod['popular_recommended_products']
 
 
 

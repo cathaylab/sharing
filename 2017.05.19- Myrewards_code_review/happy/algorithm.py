@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 from __future__ import division
 
 import os
-import jaydebeapi as jdbc
 import pandas as pd
 import numpy as np
 import xgboost as xgb
@@ -21,15 +20,10 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.cross_validation import train_test_split
 from sklearn.preprocessing import StandardScaler
-from pyspark import SparkContext
-from pyspark.sql import HiveContext, DataFrameWriter
-from pyspark.sql.functions import lit
-from pyspark.sql.functions import col
+
 from pyspark.mllib.recommendation import ALS, MatrixFactorizationModel, Rating
 
-sc = SparkContext()
-hc = HiveContext(sc)
-sqlContext = HiveContext(sc)
+
 
 
 def merge_product(data_a, data_b, method):
@@ -39,15 +33,15 @@ def merge_product(data_a, data_b, method):
 
 def final_data(data_a, data_b, method):
     # merge TXN
-    origin_new = pd.merge(data_a, data_b, on='customer_id', how=method)
+    origin_new = pd.merge(data_a, data_b, on = 'customer_id', how = method)
     origin_new = origin_new.reindex_axis(sorted(origin_new.columns), axis=1)
     origin_new = pd.concat([origin_new.ix[:, 10:], origin_new.ix[:, :10]], axis=1)
     origin_new['year_salary'] = origin_new['year_salary'].replace([np.nan, 0], \
                                                                   origin_new['year_salary'][
                                                                       origin_new['year_salary'] > 0].median())
     origin_new['utilization_rate'] = origin_new['utilization_rate'].replace([np.nan], \
-                                                                            origin_new['utilization_rate'][origin_new[
-                                                                                                               'utilization_rate'] >= 0].median())
+                                                                        origin_new['utilization_rate']\
+                                                                            [origin_new['utilization_rate'] >= 0].median())
     origin_new.loc[(origin_new['age'] < 18) & (origin_new['age'] > 90), "age"] = origin_new['age'][
         (origin_new['age'] >= 18) & (origin_new['age'] <= 90)].median()
     origin_new = origin_new.fillna(0)
