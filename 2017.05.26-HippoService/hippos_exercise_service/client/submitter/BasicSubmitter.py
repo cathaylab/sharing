@@ -56,7 +56,7 @@ class BasicSubmitter(Thread):
 
 	def should_submit(self, message):
 		print(message)
-		return message.topic == 'frontier-adw' and message.value == "submit"
+		return message.topic == 'frontier-adw' and message.value == 'submit'
 
 
 	def run(self):

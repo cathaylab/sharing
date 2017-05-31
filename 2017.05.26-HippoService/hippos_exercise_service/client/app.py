@@ -1,10 +1,13 @@
 from __future__ import print_function
-from submitter import *
+
 import SimpleHTTPServer
 import SocketServer
 import sys
 
+from submitter import *
+
 PORT = 8000
+JOB_SCRIPT = '/path/to/submit.sh'
 
 if __name__ == '__main__':
 	print('Start kafka consumer...')
@@ -13,7 +16,7 @@ if __name__ == '__main__':
 		'sub_topics': ['frontier-adw'], 
 		'pub_topic': 'hippo-finish',
 		'kafka_host': 'localhost:9092',
-		'job_script': '/Users/roger19890107/Developer/main/projects/cathay/DTAG-sharing/2017.05.26-HippoService/hippos_exercise_service/spark/submit.sh'
+		'job_script': JOB_SCRIPT
 	}
 	submitter = BasicSubmitter(config)
 	submitter.start()
@@ -21,6 +24,6 @@ if __name__ == '__main__':
 	# == start a server ==
 	#input("Wait for message...")
 	Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
-	httpd = SocketServer.TCPServer(("", PORT), Handler)
-	print("serving client app at port: {}".format(PORT))
+	httpd = SocketServer.TCPServer(('', PORT), Handler)
+	print('serving client app at port: {}'.format(PORT))
 	httpd.serve_forever()
