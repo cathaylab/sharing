@@ -45,7 +45,7 @@ object RaceConditionExample {
 
           // ==High order function Example==
           /*val result = (1 to times).foldLeft(0)((A,B) => { val cur = A + 1; println(s"$id thread: $cur"); Thread.sleep(500); cur })
-          add(result)*/
+          +:(result)*/
         }
       }
 
