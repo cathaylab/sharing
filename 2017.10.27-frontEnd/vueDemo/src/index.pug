@@ -1,0 +1,32 @@
+﻿doctype
+html
+  head
+    title 標題
+    meta(charset='UTF-8')
+    meta(lang="tw")
+    meta(name="format-detection" content="telephone=no")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    meta(name="viewport" content="width=device-width,user-scalable=no")
+    link(rel="shortcut icon" type="image/ico" href="favicon.ico")
+    meta(name="description" content="說明")
+    meta(property="og:title" content="標題")
+    meta(property="og:site_name" content="標題")
+    meta(property="og:description" content="說明")
+    meta(property="og:type" content="website")
+    meta(property="og:image" content="images/fbshare.png")
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+    script(src="https://www.youtube.com/iframe_api")
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js')
+    script(src='https://unpkg.com/vue-router/dist/vue-router.js')
+    //- script(src="https://cdn.rawgit.com/ktquez/vue-head/master/vue-head.js")
+    script(src='https://unpkg.com/vuex')
+    - var version = new Date().toUTCString().replace(',','').split(' ').join('_');
+    //- link(rel="stylesheet" href="css/common.css?"+version)
+  body
+    #app
+    //- js
+    //- script(src='//connect.facebook.net/zh_TW/all.js')
+    script(src='lib/ga.js')
+    script(src='lib/device.min.js')
+    script(src='js/app.js?'+version defer)
+    

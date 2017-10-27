@@ -1,0 +1,27 @@
+body{
+  background-color: #595959;
+  color: #FFF;
+  text-align: center;
+}
+
+h1,h2,h3,h4,h5,h6{
+  display: none;
+}
+
+p{
+  position: absolute;
+  width: 50%;
+  height:60%;
+  top: 20%;
+  left: 25%;
+  font-size: 100px;
+  line-height: 100px;
+  font-weight: bolder;
+  font-family: 'Arial';
+  text-align: center;
+}
+
+button{
+  margin: 0 auto;
+  display: inline-block;
+}

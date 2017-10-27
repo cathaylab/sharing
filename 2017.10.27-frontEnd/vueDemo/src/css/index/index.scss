@@ -1,0 +1,34 @@
+@import "../base.scss";
+@import "../reset.scss";
+$vpw:1920;
+$vph:1080;
+.wrapper.index{
+  @include alt;
+  z-index: 0;
+}
+
+//desktop
+$vpw:1366;
+$vph:768;
+@media screen and (max-width: 1366px) {
+  
+}
+
+//mobile
+$vpw:1334;
+$vph:750;
+@media screen and (max-width: 1334px) {
+
+}
+
+//mobile
+@media screen and (max-width: 1136px) {
+  
+}
+
+//tablet
+$vpw:1024;
+$vph:768;
+@media screen and (max-width: 1024px) {
+
+}

@@ -1,0 +1,405 @@
+@charset "UTF-8";
+// @font-face {
+//     font-family: 'nobelR';
+//     src: url("../css/font/nobel.eot");
+//     src: url("../css/font/nobel.eot?") format("embedded-opentype"),
+//          url("../css/font/nobel.woff") format("woff"),
+//          url("../css/font/nobel.ttf") format("truetype"),
+//          url("../css/font/nobel.ttf") format("svg");
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//   font-family: "NobelWGLBook";
+//   src: url('../css/font/nobelbook.woff') format('woff'),
+//        url('../css/font/nobelbook.ttf') format('truetype'),
+//        url("../css/font/nobelbook.ttf") format("svg");
+//   font-style: normal;
+//   font-weight: normal;
+// }
+@mixin r($wt:100%,$ht:auto){
+  position:relative;
+  width:$wt;
+  height: $ht;  
+  float: left;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  @content;
+}
+@mixin am($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  left:$left;
+  transform:translate(-50%,-50%);
+  @content;
+}
+@mixin alt($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  left:$left;
+  margin-left:$mleft;
+  margin-top: $mtop; 
+  @content;
+}
+@mixin art($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  right:$right;
+  margin-right:$mright;
+  margin-top: $mtop; 
+  @content;
+}
+@mixin alb($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  bottom: $bottom;
+  left:$left;
+  margin-left:$mleft;
+  margin-bottom: $mbottom; 
+  @content;
+}
+@mixin arb($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  bottom: $bottom;
+  right:$right;
+  margin-right:$mright;
+  margin-bottom: $mbottom; 
+  @content;
+}
+@mixin fm($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  left:$left;
+  transform:translate(-50%,-50%);
+  @content;
+}
+@mixin flt($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  left:$left;
+  margin-left:$mleft;
+  margin-top: $mtop; 
+  @content;
+}
+@mixin frt($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  right:$right;
+  margin-right:$mright;
+  margin-top: $mtop; 
+  @content;
+}
+@mixin flb($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  bottom: $bottom;
+  left:$left;
+  margin-left:$mleft;
+  margin-bottom: $mbottom; 
+  @content;
+}
+@mixin frb($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  bottom: $bottom;
+  right:$right;
+  margin-right:$mright;
+  margin-bottom: $mbottom; 
+  @content;
+}
+@mixin font($fs:15px,$lh:27px,$co:#FFF,$fw:normal,$ff:"Microsoft JhengHei"){
+  font-size: $fs;
+  line-height: $lh;
+  font-weight: $fw;
+  font-family: $ff;
+  color: $co;
+  @content;
+}
+@mixin fontvw($fs:15,$lh:27,$co:#FFF,$fw:normal,$ff:"Microsoft JhengHei"){
+  font-size: getVW($fs);
+  line-height: getVW($lh);
+  font-weight: $fw;
+  font-family: $ff;
+  color: $co;
+  @content;
+}
+@mixin amvw($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);  
+  top: $top;
+  left:$left;
+  transform:translate(-50%,-50%);
+  @content;
+}
+@mixin altvw($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);  
+  top: getVW($top);
+  left:getVW($left);
+  margin-left:getVW($mleft);
+  margin-top: getVW($mtop); 
+  @content;
+}
+@mixin artvw($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);
+  top: getVW($top);
+  right:getVW($right);
+  margin-right:getVW($mright);
+  margin-top: getVW($mtop);
+  @content;
+}
+@mixin albvw($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);
+  bottom: getVW($bottom);
+  left:getVW($left);
+  margin-left:getVW($mleft);
+  margin-bottom: getVW($mbottom);
+  @content;
+}
+@mixin arbvw($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);  
+  bottom: getVW($bottom);
+  right:getVW($right);
+  margin-right:getVW($mright);
+  margin-bottom: getVW($mbottom); 
+  @content;
+}
+@mixin fmvw($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  top: $top;
+  left:$left;
+  transform:translate(-50%,-50%);
+  @content;
+}
+@mixin fltvw($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  top: getVW($top);
+  left:getVW($left);
+  margin-left:getVW($mleft);
+  margin-top: getVW($mtop);
+  @content;
+}
+@mixin frtvw($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  top: getVW($top);
+  right:getVW($right);
+  margin-right:getVW($mright);
+  margin-top: getVW($mtop);
+  @content;
+}
+@mixin flbvw($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  bottom: getVW($bottom);
+  left:getVW($left);
+  margin-left:getVW($mleft);
+  margin-bottom: getVW($mbottom);
+  @content;
+}
+@mixin frbvw($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  bottom: getVW($bottom);
+  right:getVW($right);
+  margin-right:getVW($mright);
+  margin-bottom: getVW($mbottom);
+  @content;
+}
+@mixin rvw($wt:100%,$ht:auto){
+  position:relative;
+  width:getVW($wt);
+  height: getVW($ht);
+  float: left;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  @content;
+}
+
+
+
+@mixin fontvh($fs:15,$lh:27,$co:#FFF,$fw:normal,$ff:"Microsoft JhengHei"){
+  font-size: getVH($fs);
+  line-height: getVH($lh);
+  font-weight: $fw;
+  font-family: $ff;
+  color: $co;
+  @content;
+}
+@mixin amvh($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:absolute;
+  width:getVH($wt);
+  height: getVH($ht);  
+  top: $top;
+  left:$left;
+  transform:translate(-50%,-50%);
+  @content;
+}
+@mixin altvh($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:absolute;
+  width:getVH($wt);
+  height: getVH($ht);  
+  top: getVH($top);
+  left:getVH($left);
+  margin-left:getVH($mleft);
+  margin-top: getVH($mtop); 
+  @content;
+}
+@mixin artvh($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:absolute;
+  width:getVH($wt);
+  height: getVH($ht);
+  top: getVH($top);
+  right:getVH($right);
+  margin-right:getVH($mright);
+  margin-top: getVH($mtop);
+  @content;
+}
+@mixin albvh($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:absolute;
+  width:getVH($wt);
+  height: getVH($ht);
+  bottom: getVH($bottom);
+  left:getVH($left);
+  margin-left:getVH($mleft);
+  margin-bottom: getVH($mbottom);
+  @content;
+}
+@mixin arbvh($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:absolute;
+  width:getVH($wt);
+  height: getVH($ht);  
+  bottom: getVH($bottom);
+  right:getVH($right);
+  margin-right:getVH($mright);
+  margin-bottom: getVH($mbottom); 
+  @content;
+}
+@mixin fmvh($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:fixed;
+  width:getVH($wt);
+  height: getVH($ht);
+  top: $top;
+  left:$left;
+  transform:translate(-50%,-50%);
+  @content;
+}
+@mixin fltvh($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:fixed;
+  width:getVH($wt);
+  height: getVH($ht);
+  top: getVH($top);
+  left:getVH($left);
+  margin-left:getVH($mleft);
+  margin-top: getVH($mtop);
+  @content;
+}
+@mixin frtvh($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:fixed;
+  width:getVH($wt);
+  height: getVH($ht);
+  top: getVH($top);
+  right:getVH($right);
+  margin-right:getVH($mright);
+  margin-top: getVH($mtop);
+  @content;
+}
+@mixin flbvh($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:fixed;
+  width:getVH($wt);
+  height: getVH($ht);
+  bottom: getVH($bottom);
+  left:getVH($left);
+  margin-left:getVH($mleft);
+  margin-bottom: getVH($mbottom);
+  @content;
+}
+@mixin frbvh($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:fixed;
+  width:getVH($wt);
+  height: getVH($ht);
+  bottom: getVH($bottom);
+  right:getVH($right);
+  margin-right:getVH($mright);
+  margin-bottom: getVH($mbottom);
+  @content;
+}
+@mixin rvh($wt:100%,$ht:auto){
+  position:relative;
+  width:getVH($wt);
+  height: getVH($ht);
+  float: left;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  @content;
+}
+
+@function getVW($aa) {
+  @return ($aa / $vpw) * 100vw;
+}
+@function PCVW($aa) {
+  @return ($aa / 1920) * 100vw;
+}
+// @function getVH($aa) {
+//   @return ($aa / 1080) * 100vh;
+// }
+@function getVH($aa) {
+  $return:($aa / $vph) * 1rem;
+  
+  @if $vph == 1080 {
+    $return:($aa / $vph) * 100vh;
+  }
+
+  @return $return;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: 0.3s
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0
+}
+.fade-move{
+  transition: transform 1s;
+}

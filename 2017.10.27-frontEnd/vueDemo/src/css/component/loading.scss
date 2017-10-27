@@ -1,0 +1,53 @@
+@import "../base.scss";
+@import "../reset.scss";
+
+$vpw:1920;
+$vph:1080;
+
+.loading{
+  @include flt;
+  z-index: 99999;
+  background-color: #fff;
+  
+  span{
+    @include alt(120px,104px,50%,50%,-60px,-52px);
+    @include font(16px,104px,#324255,'normal','Arial');
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    // background-image: url(../images/loading.png);
+    // background-repeat: no-repeat;
+    // background-position: 0 0;
+    // animation: loadingAni 1s steps(25) infinite;
+    // @keyframes loadingAni{
+    //     100%{ 
+    //       background-position: -3000px 0; 
+    //     }
+    // }
+  }
+}
+
+
+//desktop
+@media screen and (max-width: 1366px) {
+  
+}
+
+//mobile
+$vpw:1334;
+$vph:750;
+@media screen and (max-width: 1334px) {
+
+}
+
+//mobile
+@media screen and (max-width: 1136px) {
+  
+}
+
+$vpw:1024;
+$vph:768;
+//tablet
+@media screen and (max-width: 1024px) {
+
+}
