@@ -1,0 +1,295 @@
+@charset "UTF-8";
+@import "compass";
+// @font-face{ 
+//   font-family: 'Noto Sans TC';
+//   font-style: normal;
+//   font-weight: 500;
+//   src: url('//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff2') format('woff2'),
+//        url('//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff') format('woff'),
+//        url('//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.otf') format('opentype');
+// }
+@mixin r($wt:100%,$ht:auto){
+  position:relative;
+  width:$wt;
+  height: $ht;  
+  float: left;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  @content;
+}
+@mixin am($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  left:$left;
+  @include transform(translate(-50%,-50%));
+  @content;
+}
+@mixin alt($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  left:$left;
+  margin-left:$mleft;
+  margin-top: $mtop; 
+  @content;
+}
+@mixin art($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  right:$right;
+  margin-right:$mright;
+  margin-top: $mtop; 
+  @content;
+}
+@mixin alb($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  bottom: $bottom;
+  left:$left;
+  margin-left:$mleft;
+  margin-bottom: $mbottom; 
+  @content;
+}
+@mixin arb($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:absolute;
+  width:$wt;
+  height: $ht;  
+  bottom: $bottom;
+  right:$right;
+  margin-right:$mright;
+  margin-bottom: $mbottom; 
+  @content;
+}
+@mixin fm($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  left:$left;
+  @include transform(translate(-50%,-50%));
+  @content;
+}
+@mixin flt($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  left:$left;
+  margin-left:$mleft;
+  margin-top: $mtop; 
+  @content;
+}
+@mixin frt($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  top: $top;
+  right:$right;
+  margin-right:$mright;
+  margin-top: $mtop; 
+  @content;
+}
+@mixin flb($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  bottom: $bottom;
+  left:$left;
+  margin-left:$mleft;
+  margin-bottom: $mbottom; 
+  @content;
+}
+@mixin frb($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:fixed;
+  width:$wt;
+  height: $ht;  
+  bottom: $bottom;
+  right:$right;
+  margin-right:$mright;
+  margin-bottom: $mbottom; 
+  @content;
+}
+@mixin font($fs:15px,$lh:27px,$co:#FFF,$fw:normal,$ff:"微軟正黑體"){
+  font-size: $fs;
+  line-height: $lh;
+  font-weight: $fw;
+  font-family: Arial,$ff;
+  color: $co;
+  @content;
+}
+@mixin fontvw($fs:15,$lh:27,$co:#FFF,$fw:normal,$ff:"微軟正黑體"){
+  font-size: getVW($fs);
+  line-height: getVW($lh);
+  font-weight: $fw;
+  font-family: Arial,$ff;
+  color: $co;
+  @content;
+}
+@mixin amvw($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);  
+  top: $top;
+  left:$left;
+  @include transform(translate(-50%,-50%));
+  @content;
+}
+@mixin altvw($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);  
+  top: getVW($top);
+  left:getVW($left);
+  margin-left:getVW($mleft);
+  margin-top: getVW($mtop); 
+  @content;
+}
+@mixin artvw($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);
+  top: getVW($top);
+  right:getVW($right);
+  margin-right:getVW($mright);
+  margin-top: getVW($mtop);
+  @content;
+}
+@mixin albvw($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);
+  bottom: getVW($bottom);
+  left:getVW($left);
+  margin-left:getVW($mleft);
+  margin-bottom: getVW($mbottom);
+  @content;
+}
+@mixin arbvw($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:absolute;
+  width:getVW($wt);
+  height: getVW($ht);  
+  bottom: getVW($bottom);
+  right:getVW($right);
+  margin-right:getVW($mright);
+  margin-bottom: getVW($mbottom); 
+  @content;
+}
+@mixin fmvw($wt:100%,$ht:100%,$left:50%,$top:50%){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  top: $top;
+  left:$left;
+  @include transform(translate(-50%,-50%));
+  @content;
+}
+@mixin fltvw($wt:100%,$ht:100%,$left:0,$top:0,$mleft:0,$mtop:0){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  top: getVW($top);
+  left:getVW($left);
+  margin-left:getVW($mleft);
+  margin-top: getVW($mtop);
+  @content;
+}
+@mixin frtvw($wt:100%,$ht:100%,$right:0,$top:0,$mright:0,$mtop:0){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  top: getVW($top);
+  right:getVW($right);
+  margin-right:getVW($mright);
+  margin-top: getVW($mtop);
+  @content;
+}
+@mixin flbvw($wt:100%,$ht:100%,$left:0,$bottom:0,$mleft:0,$mbottom:0){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  bottom: getVW($bottom);
+  left:getVW($left);
+  margin-left:getVW($mleft);
+  margin-bottom: getVW($mbottom);
+  @content;
+}
+@mixin frbvw($wt:100%,$ht:100%,$right:0,$bottom:0,$mright:0,$mbottom:0){
+  position:fixed;
+  width:getVW($wt);
+  height: getVW($ht);
+  bottom: getVW($bottom);
+  right:getVW($right);
+  margin-right:getVW($mright);
+  margin-bottom: getVW($mbottom);
+  @content;
+}
+@mixin rvw($wt:100%,$ht:auto){
+  position:relative;
+  width:getVW($wt);
+  height: getVW($ht);
+  float: left;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  @content;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {margin:0;padding:0;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset, img {border:0;}
+address, caption, cite, code, dfn, em, strong, th, var {font-style:normal;font-weight:normal;}
+ol, ul {list-style:none;}
+caption, th {text-align:left;}
+/*h1, h2, h3, h4, h5, h6 {font-size:100%;font-weight:normal;}*/
+q:before, q:after {content:'';}
+abbr, acronym {border:0;}
+html,body{height:100%;}
+input{background:transparent;border:none;}
+input:focus,input:focus{outline: none !important;}
+body{background: #ffffff;font-family: '微軟正黑體',Arial;font-size:12px;}
+a{outline: none;hlbr:expression(this.onFocus=this.blur());text-decoration:none;}
+.clear{clear: both;}
+img{vertical-align:top;}
+html{-webkit-text-size-adjust: 100%;}
+
+@function getVW($aa) {
+  @if $vpw > 0 {
+    @return $aa * 1px;
+  }
+  @else if $vpw == 0 {
+    @return ($aa / 750) * 100vw;
+  }
+}
+@function getVH($aa) {
+  @return ($aa / 1334) * 100vh;
+}
+@function count_point_l($aa) {
+  @return ($aa / 10440) * 100%;
+}
+@function count_point_t($aa) {
+  @return ($aa / 2088) * 100%;
+}
+
+// .my-module {
+//   width: defultfc(650px, 1000px);
+// }
+// .message {
+//   border: 1px solid #ccc;
+//   padding: 10px;
+//   color: #333;
+// }
+// .success {
+//   @extend .message;
+//   border-color: green;
+// }

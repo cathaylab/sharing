@@ -1,0 +1,39 @@
+@import "base.scss";
+@import "reset.scss";
+
+$vpw:1920;
+$vph:1080;
+
+body{
+  background-color: #fff;
+}
+
+.wrapper{
+  @include r;
+  z-index: 1;
+}
+
+
+//desktop
+@media screen and (max-width: 1366px) {
+  
+}
+
+//mobile
+$vpw:1334;
+$vph:750;
+@media screen and (max-width: 1334px) {
+
+}
+
+//mobile
+@media screen and (max-width: 1136px) {
+  
+}
+
+$vpw:1024;
+$vph:768;
+//tablet
+@media screen and (max-width: 1024px) {
+
+}

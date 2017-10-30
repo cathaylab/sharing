@@ -1,0 +1,17 @@
+node_modules
+coverage
+drafts
+.DS_Store
+Thumbs.db
+db.json
+*.log
+public/
+.deploy*/
+/test/
+/upload/
+/images/
+.sass-cache
+debug.log
+/bin/
+/obj/
+
